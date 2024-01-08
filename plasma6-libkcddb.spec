@@ -4,7 +4,6 @@ Name:		plasma6-libkcddb
 Summary:	KF6 library for retrieving and sending CDDB information
 Version:	24.01.85
 Release:	1
-Epoch:		3
 Group:		Graphical desktop/KDE
 License:	GPLv2
 URL:		http://projects.kde.org/projects/kde/kdemultimedia/libkcddb
@@ -21,7 +20,7 @@ BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6KIO)
 BuildRequires:  cmake(KF6WidgetsAddons)
 BuildRequires:  cmake(KF6KCMUtils)
-BuildRequires:	pkgconfig(libmusicbrainz6)
+BuildRequires:	pkgconfig(libmusicbrainz5)
 %rename	libkcddb6
 Obsoletes:	%{mklibname KF6CddbWidgets 6} < %{EVRD}
 
@@ -30,16 +29,16 @@ KF6 library for retrieving and sending CDDB information.
 
 %files -f libkcddb.lang -f kcmcddb.lang -f kcontrol.lang
 %{_datadir}/applications/kcm_cddb.desktop
-%{_datadir}/config.kcfg/libkcddb6.kcfg
+%{_datadir}/config.kcfg/libkcddb5.kcfg
 %{_libdir}/qt6/plugins/plasma/kcms/systemsettings_qwidgets/kcm_cddb.so
 %{_datadir}/qlogging-categories6/libkcddb.categories
 
 #------------------------------------------------------------------------------
 
-%define kcddb_major 6
-%define libkcddb %mklibname KF6Cddb
+%define kcddb_major 5
+%define libkcddb %mklibname KCddb6
 
-%libpackage KF6Cddb %{kcddb_major}
+%libpackage KCddb6 %{kcddb_major}
 
 #------------------------------------------------------------------------------
 
@@ -56,18 +55,19 @@ This package contains header files needed if you wish to build applications
 based on libkcddb.
 
 %files devel
-%{_libdir}/libKF6Cddb.so
-%{_libdir}/cmake/KF6Cddb
+%{_libdir}/libKCddb6.so
+%{_libdir}/cmake/KCddb6
 %{_includedir}/*                                                                                       
 %{_libdir}/qt6/mkspecs/modules/qt_KCddb.pri
                    
 #------------------------------------------------------------------------------
 
 %prep
-%autosetup -p1
+%autosetup -p1 -n libkcddb-%{version}
 
 %build
 %cmake \
+	-DQT_MAJOR_VERSION=6 \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON \
 	-G Ninja
 %ninja
