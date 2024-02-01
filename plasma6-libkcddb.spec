@@ -2,7 +2,7 @@
 
 Name:		plasma6-libkcddb
 Summary:	KF6 library for retrieving and sending CDDB information
-Version:	24.01.90
+Version:	24.01.95
 Release:	1
 Group:		Graphical desktop/KDE
 License:	GPLv2
